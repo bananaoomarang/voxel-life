@@ -12,7 +12,7 @@ module.exports = function(opts, setup) {
     var defaults = {
         texturePath: texturePath,
         generate: function(x, y, z) {
-            return y === 1 || y === 2 ? 1 : 0;
+            return y === 0 ? 1 : 0;
         },
         materials: [['grass', 'dirt', 'grass_dirt'], 'brick', 'dirt'], //[top,bottom,sides]
         materialFlatColor: false,

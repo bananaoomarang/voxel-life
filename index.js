@@ -51,11 +51,11 @@ Life.prototype.update = function() {
             switch(this.grid[x][y]) {
                 case DEAD:
                     this.grid[x][y] = ALIVE;
-                    game.setBlock([x, y, 1], 1);
+                    game.setBlock([x, y + 1, -5], 1);
                     break;
                 case ALIVE:
                     this.grid[x][y] = DEAD;
-                    game.setBlock([x, y, 1], 0);
+                    game.setBlock([x, y + 1, -5], 0);
                     break;
                 default:
                     console.log('Pfff, something screwed up somewhere...')
