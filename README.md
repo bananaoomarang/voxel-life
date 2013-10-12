@@ -4,6 +4,7 @@ voxel-life
 ==========
 
 Implements Conway's 'The Game Of Life' in voxel.js (why not!)
+(3D mode coming soon...)
 
 =======
 To Run Example
