@@ -23,13 +23,19 @@ function Life(opts) {
             // Decide if alive or dead
             var type = Math.round(Math.random());
 
+            // Figure out x, y, z game coords for block
+            var xg = x + this.pos[0],
+                yg = y + this.pos[1],
+                zg = this.pos[2];
+
             switch(type) {
                 case 0:
                     this.grid[x][y] = DEAD;
+                    this.game.setBlock([xg, yg, zg], 0);
                     break;
                 case 1:
                     this.grid[x][y] = ALIVE;
-                    this.game.setBlock([x, y + 1, -5], 1);
+                    this.game.setBlock([xg, yg, zg], 1);
                     break;
                 default:
                     console.log('WTF maths just broke call Milo');
@@ -50,24 +56,29 @@ Life.prototype.update = function() {
     for (var x = 0; x < this.grid.length; x++) {
         for (var y = 0; y < this.grid[x].length; y++) {
             
-            var neighbors = this.getNeighbors({x: x, y: y + 1});
+            // Figure out x, y, z game coords for block
+            var xg = x + this.pos[0],
+                yg = y + this.pos[1],
+                zg = this.pos[2];
+            
+            var neighbors = this.getNeighbors({x: x, y: y});
             
             switch(this.grid[x][y]) {
                 case DEAD:
                     if(neighbors === 3) {
                         this.grid[x][y] = ALIVE;
-                        this.game.setBlock([x, y + 1, -5], 1);
+                        this.game.setBlock([xg, yg, zg], 1);
                     }
                     break;
                 case ALIVE:
                     if(neighbors < 2) {
                         this.grid[x][y] = DEAD;
-                        this.game.setBlock([x, y + 1, -5], 0);
+                        this.game.setBlock([xg, yg, zg], 0);
                     }
 
                     if(neighbors > 3) {
                         this.grid[x][y] = DEAD;
-                        this.game.setBlock([x, y + 1, -5], 0);
+                        this.game.setBlock([xg, yg, zg], 0);
                     }
                     break;
                 default:

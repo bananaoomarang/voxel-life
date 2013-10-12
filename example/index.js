@@ -23,7 +23,7 @@ module.exports = function(opts, setup) {
         lightsDisabled: false,
         fogDisabled: true,
         generateChunks: true,
-        mesher: voxel.meshers.culled, //Why TF does the greedy mesher screw up textures?
+        mesher: voxel.meshers.culled //Why TF does the greedy mesher screw up textures?
     };
 
     setup = setup || defaultSetup;
@@ -58,7 +58,12 @@ function defaultSetup(game, avatar) {
     game.flyer = makeFly(target);
 
     // Life
-    var life = new Life(game);
+    var life = new Life({
+        game: game,
+        dims: [20, 20],
+        pos: [0, 1, -5],
+        speed: 1000
+    });
 
     // highlight blocks when you look at them, hold <Ctrl> for block placement
     var blockPosPlace, blockPosErase;
